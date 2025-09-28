@@ -1,159 +1,136 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Promo WiFi Cashback 50%</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdn.jsdelivr.net/npm/lucide-static@0.268.0/font/lucide.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Inventori & Sales</title>
   <style>
-    .animate-blob { animation: blob 8s infinite; }
-    @keyframes blob {
-      0% { transform: translate(0px, 0px) scale(1); }
-      33% { transform: translate(30px, -20px) scale(1.05); }
-      66% { transform: translate(-20px, 20px) scale(0.95); }
-      100% { transform: translate(0px, 0px) scale(1); }
-    }
-    .animate-pulse-slow { animation: pulse 2.8s infinite; }
-    @keyframes pulse {
-      0% { transform: scale(1); filter: drop-shadow(0 0 12px rgba(255,255,255,0.06)); }
-      50% { transform: scale(1.03); filter: drop-shadow(0 0 40px rgba(99,102,241,0.18)); }
-      100% { transform: scale(1); }
-    }
-    .confetti { will-change: transform; }
-    @keyframes confetti-fall {
-      0% { transform: translateY(-10vh) rotate(0deg); opacity: 1 }
-      100% { transform: translateY(110vh) rotate(360deg); opacity: 0 }
-    }
-    .confetti-0 { animation: confetti-fall 4s linear infinite; background: linear-gradient(135deg, #fff, #eee); }
-    .confetti-1 { animation: confetti-fall 5s linear infinite; background: linear-gradient(135deg, #fff, #ddd); }
-    .confetti-2 { animation: confetti-fall 6s linear infinite; background: linear-gradient(135deg, #fff, #ccc); }
-    .confetti-3 { animation: confetti-fall 7s linear infinite; background: linear-gradient(135deg, #fff, #bbb); }
-    .confetti-4 { animation: confetti-fall 8s linear infinite; background: linear-gradient(135deg, #fff, #aaa); }
-    .confetti-5 { animation: confetti-fall 9s linear infinite; background: linear-gradient(135deg, #fff, #999); }
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h2 { margin-top: 30px; }
+    input, select, button { margin: 5px; padding: 8px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid #444; padding: 6px; text-align: center; }
+    th { background: #eee; }
+    .print-btn { margin-top: 20px; padding: 10px 15px; }
   </style>
 </head>
-<body class="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-900 via-indigo-900 to-slate-800 text-white overflow-hidden relative">
+<body>
 
-  <!-- background orbs -->
-  <div class="absolute inset-0 -z-10">
-    <div class="absolute -left-32 -top-32 w-96 h-96 rounded-full bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 opacity-30 blur-3xl animate-blob"></div>
-    <div class="absolute -right-24 top-20 w-72 h-72 rounded-full bg-gradient-to-tr from-cyan-400 via-teal-400 opacity-20 blur-2xl animate-blob"></div>
-    <div class="absolute left-1/2 bottom-0 -translate-x-1/2 w-[90vw] h-72 bg-gradient-to-t from-black/60 to-transparent blur-xl"></div>
-  </div>
+  <h1>Inventori & Sales System</h1>
 
-  <!-- confetti -->
-  <div aria-hidden class="pointer-events-none absolute inset-0 -z-0">
-    <span class="confetti confetti-0 absolute w-2 h-3 rounded-sm" style="left:10%;top:10%;"></span>
-    <span class="confetti confetti-1 absolute w-2 h-3 rounded-sm" style="left:30%;top:20%;"></span>
-    <span class="confetti confetti-2 absolute w-2 h-3 rounded-sm" style="left:50%;top:15%;"></span>
-    <span class="confetti confetti-3 absolute w-2 h-3 rounded-sm" style="left:70%;top:25%;"></span>
-    <span class="confetti confetti-4 absolute w-2 h-3 rounded-sm" style="left:85%;top:5%;"></span>
-    <span class="confetti confetti-5 absolute w-2 h-3 rounded-sm" style="left:95%;top:30%;"></span>
-  </div>
+  <!-- Form Input Barang -->
+  <h2>Tambah Barang</h2>
+  <input type="text" id="namaBarang" placeholder="Nama Barang">
+  <input type="number" id="stokBarang" placeholder="Stok (pcs)">
+  <button onclick="tambahBarang()">Tambah</button>
 
-  <!-- content -->
-  <main class="container mx-auto px-6 py-12 flex flex-col md:flex-row items-center gap-10">
-    <!-- left promo card -->
-    <div class="relative w-full md:w-5/12 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-2xl">
-      <div class="flex items-center gap-4">
-        <div class="w-20 h-20 rounded-xl flex items-center justify-center bg-gradient-to-br from-indigo-600 to-pink-500 shadow-lg animate-pulse-slow">
-          <i class="lucide lucide-wifi text-white text-3xl"></i>
-        </div>
-        <div>
-          <h2 class="text-2xl font-extrabold">Promo WiFi Cashback 50%</h2>
-          <p class="text-sm text-white/80 mt-1">Nikmati koneksi super cepat + cashback hingga 50% untuk pelanggan baru.</p>
-          <p class="text-lg font-bold text-yellow-300 mt-2">Mulai Rp 200.000-an/bulan</p>
-        </div>
-      </div>
+  <table id="tabelBarang">
+    <thead>
+      <tr>
+        <th>Nama Barang</th>
+        <th>Stok</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
-      <div class="mt-6 grid grid-cols-2 gap-3">
-        <div class="p-4 rounded-lg bg-white/5 border border-white/10">
-          <div class="text-xs text-white/70">Durasi</div>
-          <div class="text-lg font-bold">30 hari</div>
-        </div>
-        <div class="p-4 rounded-lg bg-white/5 border border-white/10">
-          <div class="text-xs text-white/70">Syarat</div>
-          <div class="text-lg font-bold">Pendaftaran & verifikasi</div>
-        </div>
-      </div>
+  <!-- Form Input Penjualan -->
+  <h2>Tambah Penjualan</h2>
+  <input type="text" id="namaToko" placeholder="Nama Toko">
+  <input type="text" id="koordinat" placeholder="Koordinat Toko (lat,lon)">
+  <select id="barangSelect"></select>
+  <input type="number" id="jumlahJual" placeholder="Jumlah (pcs)">
+  <input type="date" id="tglJual">
+  <button onclick="tambahPenjualan()">Tambah Penjualan</button>
 
-      <div class="mt-6 flex flex-wrap gap-3">
-        <button onclick="openModal()" class="flex items-center gap-2 px-5 py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-pink-500 shadow-xl font-semibold">
-          <i class="lucide lucide-gift"></i> Claim Cashback
-        </button>
+  <table id="tabelSales">
+    <thead>
+      <tr>
+        <th>Tanggal</th>
+        <th>Nama Toko</th>
+        <th>Koordinat</th>
+        <th>Barang</th>
+        <th>Jumlah</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
-        <a href="https://wa.me/6285922892518?text=Halo%20saya%20mau%20daftar%20Promo%20WiFi%20Cashback%2050%25" target="_blank" class="flex items-center gap-2 px-5 py-3 rounded-lg bg-green-500 shadow-xl font-semibold">
-          <i class="lucide lucide-message-circle"></i> Contact Me
-        </a>
-
-        <button onclick="alert('Detail promo: Cashback 50% otomatis diterapkan saat pembayaran. Harga mulai Rp 200.000-an. Pastikan nomor terdaftar.')" class="px-4 py-2 rounded-lg border border-white/10 text-sm">Lihat Detail</button>
-      </div>
-
-      <!-- badge -->
-      <div class="absolute -right-6 -top-6 w-36 h-36 flex items-center justify-center animate-spin-slow">
-        <div class="w-28 h-28 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex flex-col items-center justify-center text-slate-900 font-extrabold shadow-2xl border-4 border-white/10">
-          <div class="text-3xl">50%</div>
-          <div class="text-xs -mt-1">CASHBACK</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- right content -->
-    <div class="w-full md:w-6/12 flex flex-col items-center">
-      <div class="w-full rounded-2xl p-6 bg-white/5 border border-white/10 backdrop-blur-md shadow-2xl">
-        <h3 class="text-3xl font-extrabold">Koneksi Stabil. Hemat Juga.</h3>
-        <p class="mt-2 text-white/80">Pasang sekarang, dapatkan cashback 50% — otomatis dipotong di invoice pertama.</p>
-        <div class="mt-6 flex gap-6">
-          <div>
-            <span class="text-xs text-white/70">Kecepatan</span>
-            <div class="text-xl font-bold">30 Mbps</div>
-          </div>
-          <div>
-            <span class="text-xs text-white/70">Support</span>
-            <div class="text-xl font-bold">24/7</div>
-          </div>
-        </div>
-      </div>
-      <p class="mt-6 text-sm text-white/70 text-center">* S&K berlaku. Promo terbatas untuk pengguna baru dan pelanggan yang melakukan aktivasi lewat halaman resmi.</p>
-    </div>
-  </main>
-
-  <!-- modal -->
-  <div id="modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70">
-    <div class="w-[92%] max-w-xl bg-slate-900/90 border border-white/10 rounded-2xl p-6 shadow-2xl">
-      <div class="flex justify-between items-start">
-        <div>
-          <h4 class="text-xl font-bold">Claim Cashback 50%</h4>
-          <p class="text-sm text-white/70 mt-1">Masukkan nomor ponsel atau email untuk menerima kode. Cashback dipotong otomatis.</p>
-        </div>
-        <button onclick="closeModal()" class="p-2 rounded-full hover:bg-white/5">
-          <i class="lucide lucide-x"></i>
-        </button>
-      </div>
-      <div class="mt-4 grid gap-3">
-        <input id="claimInput" class="w-full bg-white/5 border border-white/10 rounded-lg p-3 outline-none" placeholder="Nomor ponsel / Email" />
-        <div class="flex gap-3">
-          <button onclick="handleClaim()" class="flex-1 px-4 py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-pink-500 font-semibold">Klaim Sekarang</button>
-          <button onclick="closeModal()" class="px-4 py-3 rounded-lg border border-white/10">Batal</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- toast -->
-  <div id="toast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 bg-green-500 text-slate-900 px-4 py-2 rounded-full shadow-xl">
-    Promo berhasil diklaim — cek inbox untuk kode.
-  </div>
+  <!-- Tombol Cetak -->
+  <button class="print-btn" onclick="window.print()">Cetak Laporan</button>
 
   <script>
-    function openModal(){ document.getElementById('modal').classList.remove('hidden'); }
-    function closeModal(){ document.getElementById('modal').classList.add('hidden'); }
-    function handleClaim(){
-      closeModal();
-      document.getElementById('toast').classList.remove('hidden');
-      setTimeout(()=>{ document.getElementById('toast').classList.add('hidden'); },3000);
+    let barang = JSON.parse(localStorage.getItem("barang")) || [];
+    let sales = JSON.parse(localStorage.getItem("sales")) || [];
+
+    function simpanData() {
+      localStorage.setItem("barang", JSON.stringify(barang));
+      localStorage.setItem("sales", JSON.stringify(sales));
     }
+
+    function renderBarang() {
+      let tbody = document.querySelector("#tabelBarang tbody");
+      let select = document.querySelector("#barangSelect");
+      tbody.innerHTML = "";
+      select.innerHTML = "";
+      barang.forEach((b, i) => {
+        tbody.innerHTML += `<tr><td>${b.nama}</td><td>${b.stok}</td></tr>`;
+        select.innerHTML += `<option value="${i}">${b.nama}</option>`;
+      });
+    }
+
+    function renderSales() {
+      let tbody = document.querySelector("#tabelSales tbody");
+      tbody.innerHTML = "";
+      sales.forEach(s => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${s.tanggal}</td>
+            <td>${s.toko}</td>
+            <td>${s.koordinat}</td>
+            <td>${s.barang}</td>
+            <td>${s.jumlah}</td>
+          </tr>`;
+      });
+    }
+
+    function tambahBarang() {
+      let nama = document.getElementById("namaBarang").value;
+      let stok = parseInt(document.getElementById("stokBarang").value);
+      if (!nama || !stok) return alert("Isi nama dan stok barang!");
+      barang.push({ nama, stok });
+      simpanData();
+      renderBarang();
+    }
+
+    function tambahPenjualan() {
+      let toko = document.getElementById("namaToko").value;
+      let koordinat = document.getElementById("koordinat").value;
+      let barangIndex = document.getElementById("barangSelect").value;
+      let jumlah = parseInt(document.getElementById("jumlahJual").value);
+      let tanggal = document.getElementById("tglJual").value;
+
+      if (!toko || !koordinat || jumlah <= 0 || !tanggal) {
+        return alert("Lengkapi semua data!");
+      }
+
+      let namaBarang = barang[barangIndex].nama;
+
+      // Kurangi stok
+      if (barang[barangIndex].stok < jumlah) {
+        return alert("Stok tidak cukup!");
+      }
+      barang[barangIndex].stok -= jumlah;
+
+      sales.push({ tanggal, toko, koordinat, barang: namaBarang, jumlah });
+      simpanData();
+      renderBarang();
+      renderSales();
+    }
+
+    // Render awal
+    renderBarang();
+    renderSales();
   </script>
+
 </body>
 </html>
