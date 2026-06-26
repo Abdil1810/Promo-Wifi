@@ -1,136 +1,313 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Inventori & Sales</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    h2 { margin-top: 30px; }
-    input, select, button { margin: 5px; padding: 8px; }
-    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    th, td { border: 1px solid #444; padding: 6px; text-align: center; }
-    th { background: #eee; }
-    .print-btn { margin-top: 20px; padding: 10px 15px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Beruntung Net Hotspot</title>
+
+<meta name="theme-color" content="#2563eb">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
+}
+
+body{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:
+linear-gradient(135deg,#2563eb,#0ea5e9,#10b981);
+overflow:hidden;
+position:relative;
+}
+
+body::before{
+content:"";
+position:absolute;
+width:700px;
+height:700px;
+background:rgba(255,255,255,.08);
+border-radius:50%;
+top:-250px;
+left:-250px;
+}
+
+body::after{
+content:"";
+position:absolute;
+width:600px;
+height:600px;
+background:rgba(255,255,255,.05);
+border-radius:50%;
+bottom:-250px;
+right:-250px;
+}
+
+.login-card{
+position:relative;
+z-index:2;
+width:400px;
+max-width:92%;
+padding:35px;
+border-radius:22px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(15px);
+-webkit-backdrop-filter:blur(15px);
+box-shadow:0 15px 40px rgba(0,0,0,.25);
+border:1px solid rgba(255,255,255,.2);
+color:#fff;
+}
+
+.logo{
+text-align:center;
+margin-bottom:20px;
+}
+
+.logo h1{
+font-size:34px;
+font-weight:800;
+letter-spacing:1px;
+}
+
+.logo span{
+color:#9ef01a;
+}
+
+.logo p{
+margin-top:8px;
+opacity:.9;
+font-size:15px;
+}
+
+.input-group{
+margin-top:18px;
+}
+
+.input-group input{
+width:100%;
+padding:14px 16px;
+border:none;
+outline:none;
+border-radius:12px;
+background:rgba(255,255,255,.18);
+color:#fff;
+font-size:15px;
+}
+
+.input-group input::placeholder{
+color:#eee;
+}
+
+button{
+width:100%;
+margin-top:22px;
+padding:14px;
+border:none;
+border-radius:12px;
+background:#10b981;
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+background:#059669;
+transform:translateY(-2px);
+}
+
+.error{
+margin-top:15px;
+text-align:center;
+color:#ffdddd;
+font-size:14px;
+}
+
+.footer{
+margin-top:25px;
+text-align:center;
+font-size:13px;
+opacity:.85;
+}
+
+.footer a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+@media(max-width:480px){
+
+.login-card{
+padding:28px;
+}
+
+.logo h1{
+font-size:28px;
+}
+
+}
+</style>
+
 </head>
+
 <body>
 
-  <h1>Inventori & Sales System</h1>
+<div class="login-card">
 
-  <!-- Form Input Barang -->
-  <h2>Tambah Barang</h2>
-  <input type="text" id="namaBarang" placeholder="Nama Barang">
-  <input type="number" id="stokBarang" placeholder="Stok (pcs)">
-  <button onclick="tambahBarang()">Tambah</button>
+<div class="logo">
 
-  <table id="tabelBarang">
-    <thead>
-      <tr>
-        <th>Nama Barang</th>
-        <th>Stok</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+<h1>
+BERUNTUNG
+<span>NET</span>
+</h1>
 
-  <!-- Form Input Penjualan -->
-  <h2>Tambah Penjualan</h2>
-  <input type="text" id="namaToko" placeholder="Nama Toko">
-  <input type="text" id="koordinat" placeholder="Koordinat Toko (lat,lon)">
-  <select id="barangSelect"></select>
-  <input type="number" id="jumlahJual" placeholder="Jumlah (pcs)">
-  <input type="date" id="tglJual">
-  <button onclick="tambahPenjualan()">Tambah Penjualan</button>
+<p>
+Internet Cepat • Stabil • Terpercaya
+</p>
 
-  <table id="tabelSales">
-    <thead>
-      <tr>
-        <th>Tanggal</th>
-        <th>Nama Toko</th>
-        <th>Koordinat</th>
-        <th>Barang</th>
-        <th>Jumlah</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+</div>
 
-  <!-- Tombol Cetak -->
-  <button class="print-btn" onclick="window.print()">Cetak Laporan</button>
+<form
+name="login"
+action="$(link-login-only)"
+method="post">
 
-  <script>
-    let barang = JSON.parse(localStorage.getItem("barang")) || [];
-    let sales = JSON.parse(localStorage.getItem("sales")) || [];
+<input
+type="hidden"
+name="dst"
+value="$(link-orig)">
 
-    function simpanData() {
-      localStorage.setItem("barang", JSON.stringify(barang));
-      localStorage.setItem("sales", JSON.stringify(sales));
-    }
+<input
+type="hidden"
+name="popup"
+value="true">
+```
+```html
+<div class="input-group">
+<input
+type="text"
+name="username"
+placeholder="Username"
+value="$(username)"
+required>
+</div>
 
-    function renderBarang() {
-      let tbody = document.querySelector("#tabelBarang tbody");
-      let select = document.querySelector("#barangSelect");
-      tbody.innerHTML = "";
-      select.innerHTML = "";
-      barang.forEach((b, i) => {
-        tbody.innerHTML += `<tr><td>${b.nama}</td><td>${b.stok}</td></tr>`;
-        select.innerHTML += `<option value="${i}">${b.nama}</option>`;
-      });
-    }
+<div class="input-group">
+<input
+type="password"
+name="password"
+placeholder="Password"
+required>
+</div>
 
-    function renderSales() {
-      let tbody = document.querySelector("#tabelSales tbody");
-      tbody.innerHTML = "";
-      sales.forEach(s => {
-        tbody.innerHTML += `
-          <tr>
-            <td>${s.tanggal}</td>
-            <td>${s.toko}</td>
-            <td>${s.koordinat}</td>
-            <td>${s.barang}</td>
-            <td>${s.jumlah}</td>
-          </tr>`;
-      });
-    }
+<button type="submit">
+LOGIN KE INTERNET
+</button>
 
-    function tambahBarang() {
-      let nama = document.getElementById("namaBarang").value;
-      let stok = parseInt(document.getElementById("stokBarang").value);
-      if (!nama || !stok) return alert("Isi nama dan stok barang!");
-      barang.push({ nama, stok });
-      simpanData();
-      renderBarang();
-    }
+$(if error)
+<div class="error">
+$(error)
+</div>
+$(endif)
 
-    function tambahPenjualan() {
-      let toko = document.getElementById("namaToko").value;
-      let koordinat = document.getElementById("koordinat").value;
-      let barangIndex = document.getElementById("barangSelect").value;
-      let jumlah = parseInt(document.getElementById("jumlahJual").value);
-      let tanggal = document.getElementById("tglJual").value;
+</form>
 
-      if (!toko || !koordinat || jumlah <= 0 || !tanggal) {
-        return alert("Lengkapi semua data!");
-      }
+<div class="footer">
 
-      let namaBarang = barang[barangIndex].nama;
+<p>
+📶 Powered by <b>Beruntung Net</b>
+</p>
 
-      // Kurangi stok
-      if (barang[barangIndex].stok < jumlah) {
-        return alert("Stok tidak cukup!");
-      }
-      barang[barangIndex].stok -= jumlah;
+<br>
 
-      sales.push({ tanggal, toko, koordinat, barang: namaBarang, jumlah });
-      simpanData();
-      renderBarang();
-      renderSales();
-    }
+<p>
+Internet Cepat • Stabil • Terpercaya
+</p>
 
-    // Render awal
-    renderBarang();
-    renderSales();
-  </script>
+<br>
+
+<p>
+WhatsApp Admin
+</p>
+
+<p>
+<a href="https://wa.me/6281234567890">
+0812-3456-7890
+</a>
+</p>
+
+</div>
+
+</div>
+
+$(if chap-id)
+
+<form
+name="sendin"
+action="$(link-login-only)"
+method="post"
+style="display:none">
+
+<input
+type="hidden"
+name="username">
+
+<input
+type="hidden"
+name="password">
+
+<input
+type="hidden"
+name="dst"
+value="$(link-orig)">
+
+<input
+type="hidden"
+name="popup"
+value="true">
+
+</form>
+
+<script src="/md5.js"></script>
+
+<script>
+
+document.login.onsubmit=function(){
+
+document.sendin.username.value=
+document.login.username.value;
+
+document.sendin.password.value=
+hexMD5(
+"$(chap-id)"
++
+document.login.password.value
++
+"$(chap-challenge)"
+);
+
+document.sendin.submit();
+
+return false;
+
+};
+
+</script>
+
+$(endif)
 
 </body>
 </html>
+```
+
+
+  
